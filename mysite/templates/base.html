@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">   
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
+</head>
+<body style="padding-top:90px">
+
+    {% include "navbar.html" %}
+
+    <div class="container">
+    {% block content %}
+    {% endblock %}
+    </div>
+
+    <script src="{% static 'bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'jquery-3.7.0.slim.min.js' %}"></script>
+    <script src="{% static 'kit.fontawesome.com_c998a172fe.js' %}"></script>
+
+    {% include "styles.html" %}
+
+    <footer class="fixed-bottom bg-info">
+        <div class="text-white font-italic text-right mr-5">Copyright © 2023 Django by leo</div>
+    </footer>
+</body>
+</html>

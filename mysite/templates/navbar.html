@@ -1,0 +1,78 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+    <span class="navbar-brand mx-5 mb-0 font-weight-bold font-italic">장고 웹 프로그래밍</span>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHam" aria-controls="navbarHam" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarHam">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item mx-1 btn btn-primary">
+                <a class="nav-link text-white" href="{% url 'index:index' %}">홈</a></li>
+            <li class="nav-item mx-1 btn btn-primary">
+                <a class="nav-link text-white" href="{% url 'index:bookmark' %}">북마크</a></li>
+            <li class="nav-item mx-1 btn btn-primary">
+                <a class="nav-link text-white" href="{% url 'index:blog' %}">블로그</a></li>
+            <li class="nav-item mx-1 btn btn-primary">
+                <a class="nav-link text-white" href="{% url 'album:album_list' %}">사진</a></li>
+
+            <li class="nav-item dropdown mx-1 btn btn-primary">
+                <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" >추가</a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="{% url 'index:bookmark_create' %}">북마크</a>
+                    <a class="dropdown-item" href="{% url 'index:post_add' %}">포스트</a>
+                    <hr class="dropdown-divider">
+                    <a class="dropdown-item" href="{% url 'album:album_add' %}">앨범</a>
+                    <a class="dropdown-item" href="{% url 'album:photo_add' %}">사진</a>
+                </div>
+            </li>
+
+            <li class="nav-item dropdown mx-1 btn btn-primary">
+                <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">변경</a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="{% url 'index:bookmark_change' %}">북마크</a>
+                    <a class="dropdown-item" href="{% url 'index:blog_change' %}">포스트</a>
+                    <hr class="dropdown-divider">
+                    <a class="dropdown-item" href="{% url 'album:album_change' %}">앨범</a>
+                    <a class="dropdown-item" href="{% url 'album:photo_change' %}">사진</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown mx-1 btn btn-primary">
+                <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">유틸리티</a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="{% url 'admin:index' %}">관리자</a>
+                    <hr class="dropdown-divider">
+                    <a class="dropdown-item" href="{% url 'index:blog_archive' %}">보관소</a>
+                    <a class="dropdown-item" href="{% url 'index:blog_search' %}">검색</a>
+                </div>
+            </li>
+        </ul>
+        <form class="form-inline my-2">
+            <input class="form-control mr-sm-2" type="search" placeholder="global search" aria-label="Search">
+        </form>
+
+        {% if user.is_authenticated %}
+        <ul class="navbar-nav ml-5 mr-5">
+            <li class="nav-item dropdown mx-1 btn btn-primary">
+                <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
+                    <i class="fas fa-user" aria-hidden="true"></i> {{ user.username }} </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">                    
+                    <a class="dropdown-item" href="{% url 'common:logout' %}">로그아웃</a>
+                    <a class="dropdown-item" href="{% url 'common:password_change' %}">비밀번호 변경</a>
+                </div>
+            </li>
+        </ul>
+        {% else %}
+        <ul class="navbar-nav ml-5 mr-5">
+            <li class="nav-item dropdown mx-1 btn btn-primary">
+                <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
+                    <i class="fas fa-user" aria-hidden="true"></i> 손님 </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">                    
+                    <a class="dropdown-item" href="{% url 'common:login' %}">로그인</a>
+                    <a class="dropdown-item" href="{% url 'common:signup' %}">회원가입</a>
+                </div>
+            </li>
+        </ul>
+        {% endif %}
+
+    </div>
+</nav>
